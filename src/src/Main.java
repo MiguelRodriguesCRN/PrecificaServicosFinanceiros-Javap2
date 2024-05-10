@@ -2,22 +2,26 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
+        //criação do objeto scanner
+        Scanner scanner = new Scanner(System.in);
 //-------------------------Cadastro e Login de USUÁRIOS---------------------------------------------------------------
 
+        //criação do objeto login
         Login login = new Login();
 
         boolean executando = true;
+        int loginUsuario;
+
+        //criando o switch case
         while (executando) {
             System.out.println("1. Cadastrar");
             System.out.println("2. Login");
             System.out.println("3. Sair");
             System.out.print("Escolha uma opção: ");
-            int opcao = scanner.nextInt();
+            loginUsuario = scanner.nextInt();
             scanner.nextLine();
-        }
 
-        switch (opcao){
+        switch (loginUsuario) {
             case 1:
                 System.out.println("Digite o nome do usuário: ");
                 String novoUsuario = scanner.nextLine();
@@ -42,9 +46,7 @@ public class Main {
             default:
                 System.out.println("Opção inválida");
         }
-
-
-
+        }
 
 //-------------------------Cadastro e Listagem de PRODUTOS---------------------------------------------------------------
 
@@ -57,7 +59,7 @@ public class Main {
         ListarProdutos listagemProdutos = new ListarProdutos();
         CadastroDeProduto cadastrarNovoProduto = new CadastroDeProduto(listagemProdutos);
 
-        Scanner scanner = new Scanner(System.in);
+
         //variavel da escolha do usuario
         int opcao;
 
