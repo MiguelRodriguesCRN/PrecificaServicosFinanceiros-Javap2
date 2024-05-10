@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-   //Classe CadastroDeProduto
+   //Classe CadastroDeProduto--------------------------------------------------------
 public class CadastroDeProduto {
 
     //buscando método listarProdutos

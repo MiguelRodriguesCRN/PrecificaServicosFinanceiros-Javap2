@@ -1,4 +1,5 @@
-//criando a classe produto
+
+//criando a classe produto---------------------------------------------------------------
 public class Produto {
     //declarando variáveis de nome e preço
     private String nome;

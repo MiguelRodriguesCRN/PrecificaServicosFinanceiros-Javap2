@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-//Criando classe de listagem de produtos
+//Criando classe de listagem de produtos-------------------------------------
 public class ListarProdutos{
 
     //usando list
