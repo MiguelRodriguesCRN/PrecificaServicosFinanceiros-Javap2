@@ -17,7 +17,7 @@ public class CadastroDeProduto {
     public void cadastrarNovoProduto() {
         System.out.print("Por favor, inserir o nome do novo produto: ");
         String nome = scanner.nextLine();
-        System.out.print("Por favor, inserir o preço do novo produto: ");
+        System.out.print("Por favor, inserir o preço do novo produto (use virgula) : ");
         double preco = scanner.nextDouble();
         //criação e adição à lista usando informações colhidas acima
         Produto produto = new Produto( nome, preco);
