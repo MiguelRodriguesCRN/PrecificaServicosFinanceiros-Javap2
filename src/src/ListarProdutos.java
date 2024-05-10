@@ -11,10 +11,15 @@ public class ListarProdutos{
     public ListarProdutos() {
         produtos = new ArrayList<>();
     }
+    //metodo de cadastro de um novo produto
+    public void cadastrarProduto(Produto produto) {
+        produtos.add(produto);
+    }
     //metodo de listagem
     public void listagemProdutos() {
         for (Produto produto : produtos) {
             System.out.println(produto);
         }
+
     }
 }
