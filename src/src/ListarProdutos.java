@@ -22,4 +22,14 @@ public class ListarProdutos{
         }
 
     }
+
+    // Metodo para pesquisar o produto, usando como parametro o nome
+    public Produto pesquisarProduto(String nome) {
+        for (Produto produto : produtos) {
+            if (produto.getNome().equalsIgnoreCase(nome)) {
+                return produto;
+            }
+        }
+        return null;
+    }
 }

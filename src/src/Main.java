@@ -52,6 +52,7 @@ public class Main {
                 do {
                     System.out.println("\n1. Cadastrar Produto");
                     System.out.println("2. Listar Produtos");
+                    System.out.println("3. Pesquisar Produto por Nome");
                     System.out.println("0. Sair");
                     System.out.print("Escolha uma opção: ");
                     opcao = scanner.nextInt();
@@ -64,6 +65,17 @@ public class Main {
                         case 2:
                             listagemProdutos.listagemProdutos();
                             break;
+                        case 3:
+                            System.out.print("Digite o nome do produto: ");
+                            String nomeProduto = scanner.nextLine();
+                            Produto produtoEncontradoNome = listagemProdutos.pesquisarProduto(nomeProduto);
+                            if (produtoEncontradoNome != null) {
+                                System.out.println("Produto encontrado: " + produtoEncontradoNome);
+                            } else {
+                                System.out.println("Produto não encontrado.");
+                            }
+                            break;
+
                         case 0:
                             logado = false;
                             break;
@@ -76,4 +88,5 @@ public class Main {
         scanner.close();
     }
 }
+
 
