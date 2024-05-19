@@ -1,12 +1,16 @@
 import java.util.Iterator;
 import java.util.List;
 
-public class DeletarProdutos { private ListarProdutos listarProdutos;
+public class DeletarProdutos {
 
+    private ListarProdutos listarProdutos;
+
+    // Construtor que recebe a instância de ListarProdutos
     public DeletarProdutos(ListarProdutos listarProdutos) {
         this.listarProdutos = listarProdutos;
     }
 
+    // Método para deletar um produto pelo nome
     public void deletarProdutoPorNome(String nome) {
         List<Produto> produtos = listarProdutos.getProdutos();
         boolean produtoEncontrado = false;
@@ -26,4 +30,3 @@ public class DeletarProdutos { private ListarProdutos listarProdutos;
         }
     }
 }
-
