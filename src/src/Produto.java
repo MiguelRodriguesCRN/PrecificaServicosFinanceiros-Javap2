@@ -1,15 +1,15 @@
-
-//criando a classe produto----------------------------------------------------------
 public class Produto {
-    //declarando variáveis de nome e preço
+
     private String nome;
     private double preco;
+    private double porcentagemLucro;
+    private int quantidade;
 
-    //Get
-    public Produto( String nome, double preco) {
-
+    public Produto(String nome, double preco, double porcentagemLucro, int quantidade) {
         this.nome = nome;
         this.preco = preco;
+        this.porcentagemLucro = porcentagemLucro;
+        this.quantidade = quantidade;
     }
 
     public String getNome() {
@@ -20,10 +20,17 @@ public class Produto {
         return preco;
     }
 
+    public double getPorcentagemLucro() {
+        return porcentagemLucro;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
     @Override
     public String toString() {
-        return  " Nome: " + nome + ", Preço: R$" + preco;
+        return String.format("Nome: %s| Preço: %.2f| Porcentagem de Lucro: %.2f%%| Quantidade: %d",
+                nome, preco, porcentagemLucro, quantidade);
     }
 }
-
-

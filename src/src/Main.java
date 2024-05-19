@@ -53,6 +53,7 @@ public class Main {
                     System.out.println("\n1. Cadastrar Produto");
                     System.out.println("2. Listar Produtos");
                     System.out.println("3. Pesquisar Produto por Nome");
+                    System.out.println("4. Alterar Produto");
                     System.out.println("0. Sair");
                     System.out.print("Escolha uma opção: ");
                     opcao = scanner.nextInt();
@@ -75,7 +76,9 @@ public class Main {
                                 System.out.println("Produto não encontrado.");
                             }
                             break;
-
+                        case 4:
+                            cadastrarNovoProduto.alterarProduto();
+                            break;
                         case 0:
                             logado = false;
                             break;

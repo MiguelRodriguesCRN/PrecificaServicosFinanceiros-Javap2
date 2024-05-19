@@ -1,26 +1,38 @@
 import java.util.ArrayList;
 import java.util.List;
 
-//Criando classe de listagem de produtos-------------------------------------
-public class ListarProdutos{
+public class ListarProdutos {
 
-    //usando list
     private List<Produto> produtos;
 
-    //usando array
     public ListarProdutos() {
-        produtos = new ArrayList<>();
+        this.produtos = new ArrayList<>();
     }
-    //metodo de cadastro de um novo produto
+
     public void cadastrarProduto(Produto produto) {
         produtos.add(produto);
     }
-    //metodo de listagem
+
+    public void atualizarProduto(int indice, Produto produto) {
+        produtos.set(indice, produto);
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
     public void listagemProdutos() {
+        System.out.println("Produtos cadastrados:");
         for (Produto produto : produtos) {
             System.out.println(produto);
         }
+    }
 
+    public void listagemProdutosComIndice() {
+        System.out.println("Produtos cadastrados:");
+        for (int i = 0; i < produtos.size(); i++) {
+            System.out.println(i + ": " + produtos.get(i));
+        }
     }
 
     // Metodo para pesquisar o produto, usando como parametro o nome
