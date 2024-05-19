@@ -52,7 +52,7 @@ public class Main {
                 do {
                     System.out.println("\n1. Cadastrar Produto");
                     System.out.println("2. Listar Produtos");
-                    System.out.println("3. Pesquisar Produto por Nome");
+                    System.out.println("3. Pesquisar Produto");
                     System.out.println("4. Alterar Produto");
                     System.out.println("0. Sair");
                     System.out.print("Escolha uma opção: ");
