@@ -1,5 +1,6 @@
-import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import java.util.List;
+import java.util.ArrayList;
 
 public class ListarProdutos {
 
@@ -13,29 +14,26 @@ public class ListarProdutos {
         produtos.add(produto);
     }
 
-    public void atualizarProduto(int indice, Produto produto) {
-        produtos.set(indice, produto);
-    }
-
     public List<Produto> getProdutos() {
         return produtos;
     }
 
     public void listagemProdutos() {
-        System.out.println("Produtos cadastrados:");
+        StringBuilder listaProdutos = new StringBuilder("Produtos cadastrados:\n");
         for (Produto produto : produtos) {
-            System.out.println(produto);
+            listaProdutos.append(produto).append("\n");
         }
+        JOptionPane.showMessageDialog(null, listaProdutos.toString(), "Lista de Produtos", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void listagemProdutosComIndice() {
-        System.out.println("Produtos cadastrados:");
+        StringBuilder listaProdutos = new StringBuilder("Produtos cadastrados:\n");
         for (int i = 0; i < produtos.size(); i++) {
-            System.out.println(i + ": " + produtos.get(i));
+            listaProdutos.append(i).append(": ").append(produtos.get(i)).append("\n");
         }
+        JOptionPane.showMessageDialog(null, listaProdutos.toString(), "Lista de Produtos com Índice", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    // Metodo para pesquisar o produto, usando como parametro o nome
     public Produto pesquisarProduto(String nome) {
         for (Produto produto : produtos) {
             if (produto.getNome().equalsIgnoreCase(nome)) {

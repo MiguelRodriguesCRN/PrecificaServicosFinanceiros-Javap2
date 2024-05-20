@@ -1,18 +1,16 @@
+import javax.swing.JOptionPane;
 import java.util.Iterator;
 import java.util.List;
 
 public class DeletarProdutos {
 
-    private ListarProdutos listarProdutos;
+    private List<Produto> produtos;
 
-    // Construtor que recebe a instância de ListarProdutos
-    public DeletarProdutos(ListarProdutos listarProdutos) {
-        this.listarProdutos = listarProdutos;
+    public DeletarProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 
-    // Método para deletar um produto pelo nome
     public void deletarProdutoPorNome(String nome) {
-        List<Produto> produtos = listarProdutos.getProdutos();
         boolean produtoEncontrado = false;
 
         for (Iterator<Produto> iterator = produtos.iterator(); iterator.hasNext();) {
@@ -20,13 +18,13 @@ public class DeletarProdutos {
             if (produto.getNome().equalsIgnoreCase(nome)) {
                 iterator.remove();
                 produtoEncontrado = true;
-                System.out.println("Produto deletado com sucesso: " + nome);
+                JOptionPane.showMessageDialog(null, "Produto deletado com sucesso: " + nome, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 break;
             }
         }
 
         if (!produtoEncontrado) {
-            System.out.println("Produto não encontrado: " + nome);
+            JOptionPane.showMessageDialog(null, "Produto não encontrado: " + nome, "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

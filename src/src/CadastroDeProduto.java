@@ -1,73 +1,53 @@
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class CadastroDeProduto {
 
     private ListarProdutos listarProdutos;
-    private Scanner scanner;
 
     public CadastroDeProduto(ListarProdutos listarProdutos) {
         this.listarProdutos = listarProdutos;
-        this.scanner = new Scanner(System.in);
     }
 
     public void cadastrarNovoProduto() {
-        System.out.print("Por favor, inserir o nome do novo produto: ");
-        String nome = scanner.nextLine();
+        try {
+            String nome = JOptionPane.showInputDialog("Por favor, inserir o nome do novo produto:");
+            double preco = Double.parseDouble(JOptionPane.showInputDialog("Por favor, inserir o preço do novo produto (use vírgula para decimais):"));
+            double porcentagemLucro = Double.parseDouble(JOptionPane.showInputDialog("Por favor, inserir a porcentagem de lucro desejada:"));
+            int quantidade = Integer.parseInt(JOptionPane.showInputDialog("Por favor, inserir a quantidade na caixa comprada:"));
 
-        System.out.print("Por favor, inserir o preço do novo produto (use virgula) : ");
-        double preco = scanner.nextDouble();
-        scanner.nextLine(); // Consumir a nova linha residual
+            Produto produto = new Produto(nome, preco, porcentagemLucro, quantidade);
+            listarProdutos.cadastrarProduto(produto);
 
-        System.out.print("Por favor, inserir a porcentagem de lucro desejada: ");
-        double porcentagemLucro = scanner.nextDouble();
-        scanner.nextLine(); // Consumir a nova linha residual
-
-        System.out.print("Por favor, inserir a quantidade na caixa comprada: ");
-        int quantidade = scanner.nextInt();
-        scanner.nextLine(); // Consumir a nova linha residual
-
-        Produto produto = new Produto(nome, preco, porcentagemLucro, quantidade);
-        listarProdutos.cadastrarProduto(produto);
-
-        System.out.println("Cadastro finalizado, o novo produto foi adicionado ao inventário");
+            JOptionPane.showMessageDialog(null, "Cadastro finalizado, o novo produto foi adicionado ao inventário");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, insira números válidos para preço, porcentagem de lucro e quantidade.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void alterarProduto() {
-        System.out.println("Produtos cadastrados:");
-        listarProdutos.listagemProdutosComIndice();
+        String nomeProduto = JOptionPane.showInputDialog("Digite o nome do produto que deseja alterar:");
+        Produto produto = listarProdutos.pesquisarProduto(nomeProduto);
 
-        System.out.print("Digite o índice do produto a ser alterado: ");
-        int indice = scanner.nextInt();
-        scanner.nextLine(); // Consumir a nova linha residual
+        if (produto != null) {
+            try {
+                double novoPreco = Double.parseDouble(JOptionPane.showInputDialog("Digite o novo preço do produto (use vírgula para decimais):"));
+                double novaPorcentagemLucro = Double.parseDouble(JOptionPane.showInputDialog("Digite a nova porcentagem de lucro desejada:"));
+                int novaQuantidade = Integer.parseInt(JOptionPane.showInputDialog("Digite a nova quantidade na caixa comprada:"));
 
-        if (indice >= 0 && indice < listarProdutos.getProdutos().size()) {
-            Produto produto = listarProdutos.getProdutos().get(indice);
+                produto.setPreco(novoPreco);
+                produto.setPorcentagemLucro(novaPorcentagemLucro);
+                produto.setQuantidade(novaQuantidade);
 
-            System.out.print("Insira o novo nome do produto (atual: " + produto.getNome() + "): ");
-            String nome = scanner.nextLine();
-
-            System.out.print("Insira o novo preço do produto (atual: " + produto.getPreco() + "): ");
-            double preco = scanner.nextDouble();
-            scanner.nextLine(); // Consumir a nova linha residual
-
-            System.out.print("Insira a nova porcentagem de lucro (atual: " + produto.getPorcentagemLucro() + "): ");
-            double porcentagemLucro = scanner.nextDouble();
-            scanner.nextLine(); // Consumir a nova linha residual
-
-            System.out.print("Insira a nova quantidade (atual: " + produto.getQuantidade() + "): ");
-            int quantidade = scanner.nextInt();
-            scanner.nextLine(); // Consumir a nova linha residual
-
-            // Atualizar os valores do produto
-            listarProdutos.atualizarProduto(indice, new Produto(nome, preco, porcentagemLucro, quantidade));
-
-            System.out.println("Produto atualizado com sucesso.");
+                JOptionPane.showMessageDialog(null, "Produto alterado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, insira números válidos.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
-            System.out.println("Índice inválido.");
+            JOptionPane.showMessageDialog(null, "Produto não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public void encerrar() {
-        scanner.close();
+        JOptionPane.showMessageDialog(null, "Programa encerrado.", "Encerrando...", JOptionPane.INFORMATION_MESSAGE);
     }
 }
