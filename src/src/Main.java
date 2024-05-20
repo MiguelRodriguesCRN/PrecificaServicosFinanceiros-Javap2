@@ -62,7 +62,7 @@ public class Main {
                             String nomeProduto = JOptionPane.showInputDialog("Digite o nome do produto:");
                             Produto produtoEncontradoNome = listagemProdutos.pesquisarProduto(nomeProduto);
                             if (produtoEncontradoNome != null) {
-                                JOptionPane.showMessageDialog(null, "Produto encontrado: " + produtoEncontradoNome);
+                                JOptionPane.showMessageDialog(null, "Produto encontrado:\n " + produtoEncontradoNome);
                             } else {
                                 JOptionPane.showMessageDialog(null, "Produto não encontrado.", "Erro", JOptionPane.WARNING_MESSAGE);
                             }

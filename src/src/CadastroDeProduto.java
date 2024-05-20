@@ -11,7 +11,7 @@ public class CadastroDeProduto {
     public void cadastrarNovoProduto() {
         try {
             String nome = JOptionPane.showInputDialog("Por favor, inserir o nome do novo produto:");
-            double preco = Double.parseDouble(JOptionPane.showInputDialog("Por favor, inserir o preço do novo produto (use vírgula para decimais):"));
+            double preco = Double.parseDouble(JOptionPane.showInputDialog("Por favor, inserir o preço do novo produto (use ponto para decimais):"));
             double porcentagemLucro = Double.parseDouble(JOptionPane.showInputDialog("Por favor, inserir a porcentagem de lucro desejada:"));
             int quantidade = Integer.parseInt(JOptionPane.showInputDialog("Por favor, inserir a quantidade na caixa comprada:"));
 

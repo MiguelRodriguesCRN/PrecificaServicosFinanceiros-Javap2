@@ -37,7 +37,7 @@ public class Produto extends Item {
 
     @Override
     public String toString() {
-        return String.format("Nome: %s | Preço de Custo: %.2f | Porcentagem de Lucro: %.2f%% | Preço de Venda: %.2f | Quantidade: %d",
+        return String.format("Nome: %s | Preço de Custo: R$%.2f | Porcentagem de Lucro: %.2f%% | Preço de Venda: R$%.2f | Quantidade: %d",
                 getNome(), getPreco(), getPorcentagemLucro(), calcularPrecoVenda(), getQuantidade());
     }
 }
