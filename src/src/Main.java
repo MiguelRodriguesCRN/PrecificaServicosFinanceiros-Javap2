@@ -6,6 +6,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Login login = new Login();
         ListarProdutos listagemProdutos = new ListarProdutos();
+        DeletarProdutos deletarProdutos = new DeletarProdutos(listagemProdutos);
         CadastroDeProduto cadastrarNovoProduto = new CadastroDeProduto(listagemProdutos);
         int opcao;
 
@@ -54,6 +55,7 @@ public class Main {
                     System.out.println("2. Listar Produtos");
                     System.out.println("3. Pesquisar Produto");
                     System.out.println("4. Alterar Produto");
+                    System.out.println("5. Deletar Produto");
                     System.out.println("0. Sair");
                     System.out.print("Escolha uma opção: ");
                     opcao = scanner.nextInt();
@@ -78,6 +80,11 @@ public class Main {
                             break;
                         case 4:
                             cadastrarNovoProduto.alterarProduto();
+                            break;
+                        case 5:
+                            System.out.print("Digite o nome do produto a ser deletado: ");
+                            String nomeDeletarProduto = scanner.nextLine();
+                            deletarProdutos.deletarProdutoPorNome(nomeDeletarProduto);
                             break;
                         case 0:
                             logado = false;
