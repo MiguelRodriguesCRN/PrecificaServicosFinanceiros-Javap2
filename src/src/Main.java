@@ -1,90 +1,88 @@
+import java.util.List;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) {
 
-//-------------------------Cadastro e Login de USUÁRIOS---------------------------------------------------------------
-
-        Login login = new Login();
-
-        boolean executando = true;
-        while (executando) {
-            System.out.println("1. Cadastrar");
-            System.out.println("2. Login");
-            System.out.println("3. Sair");
-            System.out.print("Escolha uma opção: ");
-            int opcao = scanner.nextInt();
-            scanner.nextLine();
-        }
-
-        switch (opcao){
-            case 1:
-                System.out.println("Digite o nome do usuário: ");
-                String novoUsuario = scanner.nextLine();
-                System.out.println("Digite a senha:");
-                String novaSenha = scanner.nextLine();
-                login.cadastrarUsuario(novoUsuario, novaSenha);
-                break;
-            case 2:
-                System.out.println("Digite seu nome de usuário: ");
-                String username = scanner.nextLine();
-                System.out.println("Digite a senha: ");
-                String senha = scanner.nextLine();
-                if (login.autenticar(username, senha)) {
-                    System.out.println("Login bem sucedido!");
-                } else {
-                    System.out.println("Nome de usuário ou senha incorretos!");
-                }
-                break;
-            case 3:
-                executando = false;
-                break;
-            default:
-                System.out.println("Opção inválida");
-        }
-
-
-
-
-//-------------------------Cadastro e Listagem de PRODUTOS---------------------------------------------------------------
-
-
-        //SwichCase Teste para as Classes CadastroDeProduto e ListarProdutos
-        //Deus por favor faz isso funcionar dessa vez eu nao aguento mais
-        // deus abençoe galera
-
-        //objetos
-        ListarProdutos listagemProdutos = new ListarProdutos();
-        CadastroDeProduto cadastrarNovoProduto = new CadastroDeProduto(listagemProdutos);
-
         Scanner scanner = new Scanner(System.in);
-        //variavel da escolha do usuario
+        Login login = new Login();
+        ListarProdutos listagemProdutos = new ListarProdutos();
+        List<Produto> listaDeProdutos = listagemProdutos.getProdutos();
+        DeletarProdutos deletarProdutos = new DeletarProdutos(listaDeProdutos);
+        CadastroDeProduto cadastrarNovoProduto = new CadastroDeProduto(listagemProdutos);
         int opcao;
 
-        // criando o loop e as opções para o swicth case
-        do {
-            System.out.println("\n1. Cadastrar Produto");
-            System.out.println("2. Listar Produtos");
-            System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
+        boolean executando = true;
+        boolean logado = false;
 
-            //criação do swicth case para que usuario possa escolher
-            switch (opcao) {
-                case 1:
-                    cadastrarNovoProduto.cadastrarNovoProduto();
-                    break;
-                case 2:
-                    listagemProdutos.listagemProdutos();
-                    break;
-                case 0:
-                    cadastrarNovoProduto.encerrar();
-                    break;
-                default:
-                    System.out.println("Opção inválida!");
+        while (executando) {
+            if (!logado) {
+                String[] loginOptions = {"Cadastrar", "Login", "Sair"};
+                int loginUsuario = JOptionPane.showOptionDialog(null, "Escolha uma opção:", "Login",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, loginOptions, loginOptions[0]);
+
+                switch (loginUsuario) {
+                    case 0:
+                        String novoUsuario = JOptionPane.showInputDialog("Digite o nome do usuário:");
+                        String novaSenha = JOptionPane.showInputDialog("Digite a senha:");
+                        login.cadastrarUsuario(novoUsuario, novaSenha);
+                        break;
+                    case 1:
+                        String username = JOptionPane.showInputDialog("Digite seu nome de usuário:");
+                        String senha = JOptionPane.showInputDialog("Digite a senha:");
+                        if (login.autenticar(username, senha)) {
+                            JOptionPane.showMessageDialog(null, "Login bem sucedido!");
+                            logado = true;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Nome de usuário ou senha incorretos!", "Erro", JOptionPane.ERROR_MESSAGE);
+                        }
+                        break;
+                    case 2:
+                        executando = false;
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Opção inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                do {
+                    String[] menuOptions = {"Cadastrar Produto", "Listar Produtos", "Pesquisar Produto",
+                            "Alterar Produto", "Deletar Produto", "Sair"};
+                    opcao = JOptionPane.showOptionDialog(null, "Escolha uma opção:", "Menu",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, menuOptions, menuOptions[0]);
+
+                    switch (opcao) {
+                        case 0:
+                            cadastrarNovoProduto.cadastrarNovoProduto();
+                            break;
+                        case 1:
+                            listagemProdutos.listagemProdutos();
+                            break;
+                        case 2:
+                            String nomeProduto = JOptionPane.showInputDialog("Digite o nome do produto:");
+                            Produto produtoEncontradoNome = listagemProdutos.pesquisarProduto(nomeProduto);
+                            if (produtoEncontradoNome != null) {
+                                JOptionPane.showMessageDialog(null, "Produto encontrado:\n " + produtoEncontradoNome);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Produto não encontrado.", "Erro", JOptionPane.WARNING_MESSAGE);
+                            }
+                            break;
+                        case 3:
+                            cadastrarNovoProduto.alterarProduto();
+                            break;
+                        case 4:
+                            String nomeDeletarProduto = JOptionPane.showInputDialog("Digite o nome do produto a ser deletado:");
+                            deletarProdutos.deletarProdutoPorNome(nomeDeletarProduto);
+                            break;
+                        case 5:
+                            logado = false;
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null, "Opção inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                } while (opcao != 5);
             }
-        } while (opcao != 0);
-
+        }
         scanner.close();
     }
 }
